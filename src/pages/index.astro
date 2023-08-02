@@ -1,0 +1,508 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Blob from '../components/Blob.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+
+import { getCollection } from 'astro:content';
+import FormattedDate from '../../components/FormattedDate.astro';
+
+const projects = (await getCollection('portfolio')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+projects.length = 5;
+
+const writings = (await getCollection('writings')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+writings.length = 5;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+	</head>
+	<body>
+		<main>
+   <div class='container'>
+    <div class="box">
+     <div class='box_image' style='background: url("/my_logo.svg")'></div>
+     <div class='box_overlay'></div>
+     <div class="content">
+     <h1>Carm1ne</h1>
+     <ul>
+      <li>Entrepreneur</li>
+      <li>Freelancer</li>
+      <li>Programmer</li>
+      <li>WebDeveloper</li>
+     </ul>
+     </div>
+     <p class='vertical_text'>
+     Carm1ne
+     </p>
+    </div>
+    <div class="box"> 
+     <div class='box_image_second_animation' style='background: url("/motto_logo.svg")'></div>
+     <div class='box_overlay'></div>
+    <div class="content">
+    <h1>
+    My motto is -
+    </h1>
+    <p>
+     I believe that every person
+     deserves a fellow helping hand on their way to success,
+     and I want to offer that same helping hand.
+    </p>
+    </div>
+    <p class='vertical_text'>
+    Motto
+    </p>
+    </div>
+    <div class="box">
+     <div class='box_image' style='background: url("/portfolio_logo.svg")'></div>
+     <div class='box_overlay'></div>
+    <div class="content">
+    <a href='/portfolio'>
+     <h1>
+      My portfolio:
+     </h1>
+    </a>
+     <ul>
+     {projects.map((project) => (
+      <li>
+        <a href=`/portfolio/${project.slug}/`>{project.data.title}</a>
+      </li>
+     ))}
+     </ul>
+    </div>
+    <p class='vertical_text'>
+    Portfolio 
+    </p>
+    </div>
+    <div class="box">
+     <div class='box_image_second_animation' style='background: url("/my_services_logo.svg")'></div>
+     <div class='box_overlay'></div>
+    <div class="content">
+    <h1>
+    My services:
+    </h1>
+    <ul>
+     <li>Developing APIs</li>
+     <li>Developing webscrappers</li>
+     <li>Automating tasks</li>
+    </ul>
+    </div>
+    <p class='vertical_text'>
+    Services	
+    </p>
+    </div>
+    <div class="box">
+     <div class='box_image' style='background: url("/hire_me_logo.svg")'></div>
+     <div class='box_overlay'></div>
+    <div class="content">
+    <h1>
+    Hire me, because:	
+    </h1>
+    <ul>
+    <li>Premium quality</li>
+    <li>Perfect execution</li>
+    <li>Trusted by employers</li>
+              <li>
+                <a href='https://www.fiverr.com/oliver_wit'>Hire me on Fiverr</a>
+              </li>
+    </ul>
+    </div>
+    <p class='vertical_text'>
+    Hire me
+    </p>
+    </div>
+    <div class="box">
+     <div class='box_image_second_animation' style='background: url("/social_media_logo.svg")'></div>
+     <div class='box_overlay'></div>
+    <div class="content">
+    <h1>
+    My Social-media:
+    </h1>
+    <ul class='social_media_list'>
+      <li class='social_media_element'>
+        <a href='https://github.com/ThisIsTheCarm1ne'>
+          <img class='social_media_logo' src='/icons/github_logo.svg' alt='Check your wifi connection' />
+        </a>
+        <a href='https://github.com/ThisIsTheCarm1ne'>GitHub</a>
+      </li>
+      <li class='social_media_element'>
+        <a href='https://www.tiktok.com/@somewhat_real_carm1ne'>
+          <img class='social_media_logo' src='/icons/tiktok_logo.svg' alt='Check your wifi connection' />
+        </a>
+        <a href='https://www.tiktok.com/@somewhat_real_carm1ne'>TikTok</a>
+      </li>
+      <li class='social_media_element'>
+        <a href='https://twitter.com/Real_Carm1ne'>
+          <img class='social_media_logo' src='/icons/twitter_logo.svg' alt='Check your wifi connection' />
+        </a>
+        <a href='https://twitter.com/Real_Carm1ne'>Twitter</a>
+      </li>
+      <li class='social_media_element'>
+        <a href='https://leetcode.com/ThisIsTheCarm1ne'>
+          <img class='social_media_logo' src='/icons/leetcode_logo.svg' alt='Check your wifi connection' />
+        </a>
+        <a href='https://leetcode.com/ThisIsTheCarm1ne/'>LeetCode</a>
+      </li>
+    </ul>
+    </div>
+    <p class='vertical_text'>
+    Social-media 
+    </p>
+    </div>
+    <div class="box">
+     <div class='box_image' style='background: url("/writings_logo.svg")'></div>
+     <div class='box_overlay'></div>
+    <div class="content">
+     <a href='/writings'>
+     <h1>
+      My writings:	
+     </h1>
+     </a>
+     <ul>
+     {writings.map((writing) => (
+      <li>
+        <a href=`/writings/${writing.slug}/`>{writing.data.title}</a>
+      </li>
+     ))}
+     </ul>
+    </div>
+    <p class='vertical_text'>
+    Writings	
+    </p>
+        </div>
+        <div class="box" style="background: ">
+          <div class='box_image_second_animation' style='background: url("/donate_logo.svg")'></div>
+          <div class='box_overlay'></div>
+          <div class="content">
+            <h1>
+              Donate $$$ to me
+            </h1>
+            <ul>
+              <li>
+                <p class='inthernet_money'>BTC - bc1qypgcnsc7y9g9dk6nh5cmp5vwmrp4dgdnlq0lv6</p>
+              </li>
+            </ul>
+          </div>
+          <p class='vertical_text'>
+            Support
+          </p>
+        </div>
+      </div>
+    </main>
+    <Blob />
+  </body>
+</html>
+
+<script>
+// Get 'container'
+const container = document.querySelector('.container');
+
+document.addEventListener('mousemove', (e) => {
+	const { clientX, clientY } = e;
+	const { left, top, width, height } = container.getBoundingClientRect();
+
+	const centerX = left + width / 2;
+	const centerY = top + height / 2;
+
+	const deltaX = clientX - centerX;
+	const deltaY = clientY - centerY;
+
+	const rotateX = -(deltaY / height) * 5; // Adjust the multiplier to control the rotation strength.
+	const rotateY = (deltaX / width) * 5;
+
+	container.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+});
+
+// Reset the transformation when the mouse leaves the container.
+container.addEventListener('mouseleave', () => {
+	container.style.transform = 'none';
+});
+
+// Get all the box elements
+const boxes = document.querySelectorAll('.box');
+let lastHoveredBox = null;
+
+// Add an event listener to each box to track mouse hover
+boxes.forEach(box => {
+ const content = box.querySelector('.content');
+ const vertical = box.querySelector('.vertical_text');
+
+ box.addEventListener('mouseenter', () => {
+  // Remove the 'expanded' class from the last hovered box (if any)
+  if (lastHoveredBox && lastHoveredBox !== box) {
+   lastHoveredBox.classList.remove('expanded');
+   lastHoveredBox.querySelector('.content').classList.remove('expanded');
+   lastHoveredBox.querySelector('.vertical_text').classList.remove('expanded');
+  }
+
+  // Add the 'expanded' class to the current box
+  box.classList.add('expanded');
+  content.classList.add('expanded');
+  vertical.classList.add('expanded');
+
+  // Set the current box as the last hovered box
+  lastHoveredBox = box;
+
+ });
+});
+
+// Add an event listener to the container to track mouse leave
+document.querySelector('.container').addEventListener('mouseleave', () => {
+ // Do nothing here, so the last hovered box remains expanded
+});
+</script>
+
+<style>
+main {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ height: 100vh;
+}
+/* Try making container vertical it looks soooo good */
+.container {
+ display: flex;
+}
+.vertical_text {
+ font-family: 'ZenDots-Regular';
+	position: absolute;
+	text-align: center;
+	width: 100%;
+	height: 100%;
+	opacity: 1;
+	pointer-events: none; /* So it doesn't interfere with hover */
+	transition: opacity 0.25s ease;
+	-webkit-transform: rotate(180deg);
+	transform: rotate(180deg);
+	writing-mode: vertical-rl;
+	-webkit-writing-mode: vertical-rl;
+}
+.box {
+ width: 50px;
+ height: 350px;
+ margin: 5px;
+ transition: width 0.25s ease;
+ position: relative;
+ border: 2px solid white;
+ text-align: center;
+ background-color: rgb(white / 15%);
+ overflow: hidden;
+}
+.content {
+	z-index: 5;
+ position: absolute;
+ bottom: 0;
+ left: 0;
+ right: 0;
+ top: 0;
+ padding: 10px;
+ opacity: 0; /* Initially hidden */
+ pointer-events: none; /* So it doesn't interfere with hover */
+ transition: opacity 0.3s ease;
+}
+.inthernet_money {
+  font-size: 70%;
+  text-align: center;
+}
+@keyframes pan-overlay {
+	from {
+		background-position: 0% 0%;
+	}
+
+	to {
+		background-position: 0% -100%;
+	}
+}
+.box_overlay {    
+	background: linear-gradient(
+		#ffffff12,
+		#ffffff12 1px,
+		transparent 3px,
+		transparent 9px
+	);
+	background-size: 100% 9px;
+	height: 100%;
+	width: 100%;
+	animation: pan-overlay 22s infinite linear;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+}
+@keyframes pan-image {  
+	0% {
+		background-position: 36% 42%;
+		background-size: 200%;
+	}
+	20% {
+		background-position: 30% 35%;
+		background-size: 200%;
+	}
+	20.0001% { /* -- View 2 -- */
+		background-position: 60% 85%;
+		background-size: 500%;
+	}
+	40% {
+		background-position: 49% 81%;
+		background-size: 500%;
+	}
+	40.0001% { /* -- View 3 -- */
+		background-position: 80% 42%;
+		background-size: 300%;
+	}
+	60% {
+		background-position: 84% 33%;
+		background-size: 300%;
+	}
+	60.0001% { /* -- View 4 -- */
+		background-position: 0% 0%;
+		background-size: 300%;
+	}
+	80% {
+		background-position: 15% 4%;
+		background-size: 300%;
+	}
+	80.0001% { /* -- View 5 -- */
+		background-position: 80% 10%;
+		background-size: 300%;
+	}
+	100% {
+		background-position: 72% 14%;
+		background-size: 300%;
+	}
+}
+@keyframes pan_image_idk_how_to_name_it {  
+	0% {
+		background-position: 60% 85%;
+		background-size: 500%;
+	}
+	20% {
+		background-position: 30% 35%;
+		background-size: 200%;
+	}
+	20.0001% { /* -- View 2 -- */
+		background-position: 36% 42%;
+		background-size: 200%;
+	}
+	40% {
+		background-position: 84% 33%;
+		background-size: 300%;
+	}
+	40.0001% { /* -- View 3 -- */
+		background-position: 80% 42%;
+		background-size: 300%;
+	}
+	60% {
+		background-position: 49% 81%;
+		background-size: 500%;
+	}
+	60.0001% { /* -- View 4 -- */
+		background-position: 0% 0%;
+		background-size: 300%;
+	}
+	80% {
+		background-position: 72% 14%;
+		background-size: 300%;
+	}
+	80.0001% { /* -- View 5 -- */
+		background-position: 80% 10%;
+		background-size: 300%;
+	}
+	100% {
+		background-position: 15% 4%;
+		background-size: 300%;
+	}
+}
+.box_image {
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	z-index: -1;
+	left: 0px;
+	top: 0px;
+	background-size: 300%;
+	background-position: 0% 0%;
+	filter: sepia(100%) hue-rotate(160deg);
+	opacity: 0.6;
+	animation: pan-image 15s linear infinite;
+}
+.box_image_second_animation {
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	z-index: -1;
+	left: 0px;
+	top: 0px;
+	background-size: 300%;
+	background-position: 0% 0%;
+	filter: sepia(100%) hue-rotate(160deg);
+	opacity: 0.6;
+	animation: pan_image_idk_how_to_name_it 15s linear infinite;
+}
+.box:hover {
+ width: 400px;
+}
+.box.expanded {
+ width: 400px;
+}
+.content.expanded {
+ opacity: 1;
+ pointer-events: auto;
+}
+.vertical_text.expanded {
+	opacity: 0;
+}
+.content > ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.content > ul > li {
+  margin: 25px;
+  text-align: center;
+  font-size: 20px;
+}
+.social_media_logo {
+  height: 25px;
+  width: auto;
+}
+.content > p {
+  font-size: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+@media only screen and (max-width: 700px) {
+  .container {
+    flex-direction: column;
+  }
+  .vertical_text {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    writing-mode: horizontal-tb;
+    -webkit-writing-mode: horizontal-tb;
+  }
+  .box {
+    width: 350px;
+    height: 50px;
+    transition: height 0.25s ease;
+  }
+  .box:hover {
+    height: 400px;
+    width: 350px;
+  }
+  .box.expanded {
+    height: 400px;
+    width: 350px;
+  }
+  .inthernet_money {
+    font-size: 60%;
+  }
+}
+</style>

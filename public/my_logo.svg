@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="423"
+   height="423"
+   viewBox="0 0 423 423"
+   fill="none"
+   version="1.1"
+   id="svg1295"
+   sodipodi:docname="my_logo.svg"
+   inkscape:version="1.2.2 (b0a8486, 2022-12-01)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1297"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     showgrid="false"
+     inkscape:zoom="1.0295508"
+     inkscape:cx="25.253731"
+     inkscape:cy="95.187141"
+     inkscape:window-width="1918"
+     inkscape:window-height="1061"
+     inkscape:window-x="0"
+     inkscape:window-y="17"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1295" />
+  <g
+     clip-path="url(#clip0_0_1)"
+     id="g1280">
+    <circle
+       cx="211.5"
+       cy="211.5"
+       r="171.5"
+       fill="#960018"
+       id="circle1274" />
+    <path
+       d="M197.623 327.16C182.476 327.16 168.663 324.173 156.183 318.2C143.703 312.12 133.143 303.8 124.503 293.24C115.969 282.573 109.836 270.253 106.103 256.28C102.369 242.2 101.623 227.107 103.863 211C106.103 195 111.063 180.013 118.743 166.04C126.423 151.96 136.023 139.587 147.543 128.92C159.169 118.253 172.076 109.933 186.263 103.96C200.449 97.88 215.116 94.84 230.263 94.84C248.396 94.84 264.449 99.0533 278.423 107.48C292.503 115.907 303.596 127.16 311.703 141.24L298.743 147.64C291.809 135.693 282.049 126.2 269.463 119.16C256.983 112.12 243.276 108.6 228.343 108.6C214.903 108.6 201.943 111.32 189.463 116.76C177.089 122.2 165.836 129.667 155.703 139.16C145.569 148.547 137.143 159.427 130.423 171.8C123.809 184.173 119.543 197.24 117.623 211C115.703 225.08 116.343 238.307 119.543 250.68C122.743 263.053 128.076 273.987 135.543 283.48C143.116 292.867 152.343 300.227 163.223 305.56C174.103 310.787 186.209 313.4 199.543 313.4C215.009 313.4 229.889 309.827 244.183 302.68C258.583 295.427 270.849 286.04 280.983 274.52L292.023 281.08C280.076 295.16 265.889 306.36 249.463 314.68C233.036 323 215.756 327.16 197.623 327.16Z"
+       fill="white"
+       id="path1276" />
+    <path
+       d="M214.013 159H224.663L248.213 264H239.588L234.188 240.3H181.688L169.763 264H161.138L214.013 159ZM185.813 232.2H232.388L218.063 168.225L185.813 232.2Z"
+       fill="white"
+       id="path1278" />
+  </g>
+  <defs
+     id="defs1293">
+    <clipPath
+       id="clip0_0_1">
+      <rect
+         width="343"
+         height="343"
+         fill="white"
+         transform="translate(40 40)"
+         id="rect1290" />
+    </clipPath>
+  </defs>
+</svg>

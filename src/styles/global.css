@@ -1,0 +1,35 @@
+:root {
+ --dark_blue: #10121c;
+}
+@font-face {
+	font-family: 'Inter-Regular';
+	src: url('/fonts/Inter-Regular.otf') format('opentype');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'ZenDots-Regular';
+	src: url('/fonts/ZenDots-Regular.ttf') format('truetype');
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Inter-Regular', sans-serif;
+  margin: 0;
+  padding: 0;
+  min-width: 100vw;
+  min-height: 100vh;
+  background-color: var(--dark_blue);
+  color: white;
+  height: 100%;
+}
+a {
+ text-decoration: none;
+ color: inherit;
+ font-weight: 900;
+}

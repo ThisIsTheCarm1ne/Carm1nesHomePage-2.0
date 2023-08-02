@@ -1,0 +1,115 @@
+<footer>
+  <ul class='links_list'>
+    <li>
+      <a href='/portfolio'>Check my portfolio</a>
+    </li>
+    <li> 
+      <a href='https://www.fiverr.com/oliver_wit'>Hire me on Fiverr</a>
+    </li>
+    <li class='popup' onclick='contactMePopupFun()'>
+      Contact me
+      <span class='contact_me_popup_text' id='contactMePopup'>
+        <ul class='social_media_list'>
+          <li class='social_media_element'>
+            <a href='https://github.com/ThisIsTheCarm1ne'>
+              <img class='social_media_logo' src='/icons/github_logo.svg' alt='Check your wifi connection'
+              width='20px' height='auto'/>
+            </a>
+            <a href='https://github.com/ThisIsTheCarm1ne'>GitHub</a>
+          </li>
+          <li class='social_media_element'>
+            <a href='https://www.tiktok.com/@somewhat_real_carm1ne'>
+              <img class='social_media_logo' src='/icons/tiktok_logo.svg' alt='Check your wifi connection'
+              width='20px' height='auto'/>
+            </a>
+            <a href='https://www.tiktok.com/@somewhat_real_carm1ne'>TikTok</a>
+          </li>
+          <li class='social_media_element'>
+            <a href='https://twitter.com/Real_Carm1ne'>
+              <img class='social_media_logo' src='/icons/twitter_logo.svg' alt='Check your wifi connection'
+              width='20px' height='auto'/>
+            </a>
+            <a href='https://twitter.com/Real_Carm1ne'>Twitter</a>
+          </li>
+          <li class='social_media_element'>
+            <img class='social_media_logo' src='/icons/mail.svg' alt='Check your wifi connection'
+            width='20px' height='auto'/>
+            <p>CarM1Neees@protonmail.com</p>
+          </li>
+        </ul>
+      </span>
+    </li>
+    <li>
+      <a href='/writings'>Read my articles</a>
+    </li>
+  </ul>
+</footer>
+
+<style>
+footer {
+  margin-bottom: 5vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.links_list {
+  width: 90%;
+  list-style: none;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 0;
+}
+.popup {
+  cursor: pointer;
+}
+.popup .contact_me_popup_text {
+  visibility: hidden;
+  width: 20%;
+  background-color: var(--dark_blue);
+  color: white; 
+  border: 2px solid white;
+  text-align: center;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 5;
+  left: 49%;
+  margin-top: -5vh;
+}
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 0.7s;
+  animation: fadeIn 0.7s;
+}
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}
+.social_media_list {
+  list-style: none;
+  padding: 0;
+}
+.social_media_list p {
+  display: inline;
+  word-wrap: break-word;
+}
+.social_media_element {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+@media only screen and (max-width: 700px) {
+}
+</style>
+
+<script is:inline>
+// When the user clicks on <li>, open the popup
+function contactMePopupFun() {
+  var popup = document.getElementById("contactMePopup");
+  popup.classList.toggle("show");
+}
+</script>

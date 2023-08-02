@@ -1,0 +1,136 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+---
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+	</head>
+	<body>
+    <main>
+      <div class='container'>
+        <div class="box">
+          <div class='box_image' style='background: url("/problem.webp")'></div>
+          <div class='box_overlay'></div>
+          <div class="content">
+            <h1>404</h1>
+            <p>This page doesnt exists</p>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
+
+<style>
+main {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ height: 100vh;
+}
+/* Try making container vertical it looks soooo good */
+.container {
+ display: flex;
+}
+.box {
+  width: 400px;
+  height: 350px;
+  margin: 5px;
+  position: relative;
+  border: 2px solid white;
+  text-align: center;
+  background-color: rgb(white / 15%);
+  overflow: hidden;
+}
+.content {
+  z-index: 5;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  padding: 10px;
+  pointer-events: none; /* So it doesn't interfere with hover */
+}
+@keyframes pan-overlay {
+	from {
+		background-position: 0% 0%;
+	}
+
+	to {
+		background-position: 0% -100%;
+	}
+}
+.box_overlay {    
+	background: linear-gradient(
+		#ffffff12,
+		#ffffff12 1px,
+		transparent 3px,
+		transparent 9px
+	);
+	background-size: 100% 9px;
+	height: 100%;
+	width: 100%;
+	animation: pan-overlay 22s infinite linear;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+}
+@keyframes pan-image {  
+	0% {
+		background-position: 36% 42%;
+		background-size: 200%;
+	}
+	20% {
+		background-position: 30% 35%;
+		background-size: 200%;
+	}
+	20.0001% { /* -- View 2 -- */
+		background-position: 60% 85%;
+		background-size: 500%;
+	}
+	40% {
+		background-position: 49% 81%;
+		background-size: 500%;
+	}
+	40.0001% { /* -- View 3 -- */
+		background-position: 80% 42%;
+		background-size: 300%;
+	}
+	60% {
+		background-position: 84% 33%;
+		background-size: 300%;
+	}
+	60.0001% { /* -- View 4 -- */
+		background-position: 0% 0%;
+		background-size: 300%;
+	}
+	80% {
+		background-position: 15% 4%;
+		background-size: 300%;
+	}
+	80.0001% { /* -- View 5 -- */
+		background-position: 80% 10%;
+		background-size: 300%;
+	}
+	100% {
+		background-position: 72% 14%;
+		background-size: 300%;
+	}
+}
+.box_image {
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	z-index: -1;
+	left: 0px;
+	top: 0px;
+	background-size: 300%;
+	background-position: 0% 0%;
+	filter: sepia(100%) hue-rotate(160deg);
+	opacity: 0.6;
+	animation: pan-image 15s linear infinite;
+}
+</style>

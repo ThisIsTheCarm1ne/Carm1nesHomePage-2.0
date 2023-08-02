@@ -1,0 +1,222 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Blob from '../../components/Blob.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
+
+import { getCollection } from 'astro:content';
+import FormattedDate from '../../components/FormattedDate.astro';
+
+const projects = (await getCollection('writings')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <BaseHead title={`${SITE_TITLE} - Writings`} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <h1>Those are my writings</h1>
+      <div class='search'>
+        <input id='search_inp' type='text' class='search_inp'
+        placeholder='Search my writings' />
+        <button id='clear_search'>Clear</button>
+      </div>
+      <ul class='portfolio' id='portfolio'>
+        {projects.map((project) => (
+          <li data-tags={project.data.tags} class='box'>
+            <div class='content'>
+              <a class="" href=`/writings/${project.slug}/`>
+                <img src={project.data.image} alt={project.data.title} 
+                  width='270' height='180' 
+                  class='preview_image' />
+              </a>
+              <a class='link' href=`/writings/${project.slug}/`>{project.data.title}</a>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </main>
+    <Footer />
+    <Blob />
+  </body>
+</html>
+
+<style>
+main {
+  text-align: center;
+  border: 2px solid white;
+  /*      top right bottom left */
+  margin: 6vh 10vw 6vh 10vw;
+  padding-top: 3vh;
+  padding-bottom: 3vh;
+}
+h1 {
+  background: white;
+  color: var(--dark_blue);
+  text-align: left;
+  padding-left: 2vw;
+}
+.search {
+  float: right;
+  margin-right: 3vw;
+  margin-bottom: 3vh;
+  width: 25%;
+}
+.portfolio {
+  clear: both;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.portfolio:hover > .box::after {
+  opacity: 1;
+}
+.search_inp {
+  width: 75%;
+  border: 2px solid white;
+  background: none;
+  padding: 10px;
+  color: white;
+  outline: none;
+}
+.search_inp:focus {
+  border: 2px dashed white;
+}
+#clear_search {
+  background: white;
+  border: none;
+  padding: 12px;
+  transition: background 0.2s ease;
+}
+#clear_search:hover {
+	padding: 10px;
+	background: none;
+	border: 2px solid white;
+	color: white;
+}
+.box {
+ width: 90%;
+ height: 350px;
+ margin: 5px;
+ padding: 0;
+ list-style: none;
+ position: relative;
+ border: 1px solid #797979;
+ text-align: center;
+ overflow: hidden;
+}
+.preview_image {
+ margin-top: 3vh;
+}
+.link {
+ margin-top: 5vh;
+ text-align: center;
+ display: inline-block;
+ width: 100%;
+}
+.box::before,
+.box::after {
+  content: "";
+  height: 100%;
+  left: 0px;
+  opacity: 0;
+  position: absolute;
+  top: 0px;
+  transition: opacity 500ms;
+  width: 100%;
+}
+.box::after {  
+  background: radial-gradient(
+    600px circle at var(--mouse-x) var(--mouse-y), 
+    white,
+    transparent 40%
+  );
+  z-index: 1;
+}
+.box > .content {
+  background-color: var(--dark_blue); 
+  inset: 1px;
+  padding: 10px;
+  position: absolute;
+  z-index: 2;
+}
+@media only screen and (max-width: 1100px) {
+  .portfolio {
+    grid-template-columns: 1fr 1fr;
+    padding: 0;
+    margin: 0 auto;
+  }
+}
+@media only screen and (max-width: 800px) {
+  .portfolio {
+    grid-template-columns: 1fr;
+    padding: 0px;
+  }
+  .box {
+    margin: 0 auto;
+    margin-bottom: 10px;
+    height: 315px;
+  }
+  .search {
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 2vh;
+  }
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+for (e of document.getElementsByClassName("js-only")) {
+	e.classList.remove("js-only");
+}
+
+const projects = document.querySelectorAll("#portfolio li");
+const search = document.getElementById("search_inp");
+const clearSearch = document.getElementById("clear_search");
+const portfolioList = document.getElementById("portfolio");
+
+search.addEventListener("input", () => {
+	// grab search input value
+	const searchText = search.value.toLowerCase().trim().normalize('NFD').replace(/\p{Diacritic}/gu, "");
+	const searchTerms = searchText.split(" ");
+	const hasFilter = searchText.length > 0;
+
+	portfolioList.classList.toggle("list-searched", hasFilter);
+
+	// for each project hide all but matched
+	projects.forEach(project => {
+		const searchString = `${project.textContent} ${project.dataset.tags}`.toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, "");
+		const isMatch = searchTerms.every(term => searchString.includes(term));
+
+		project.hidden = !isMatch;
+		project.classList.toggle("matched-project", hasFilter && isMatch);
+	});
+});
+
+clearSearch.addEventListener("click", () => {
+	search.value = "";
+	projects.forEach(project => {
+		project.hidden = false;
+		project.classList.remove("matched-project");
+	});
+
+	portfolioList.classList.remove("list-searched");
+});
+});
+document.getElementById("portfolio").onmousemove = e => {
+  for(const box of document.getElementsByClassName("box")) {
+    const rect = box.getBoundingClientRect(),
+          x = e.clientX - rect.left,
+          y = e.clientY - rect.top;
+
+    box.style.setProperty("--mouse-x", `${x}px`);
+    box.style.setProperty("--mouse-y", `${y}px`);
+  };
+}
+</script>
